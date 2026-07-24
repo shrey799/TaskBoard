@@ -234,3 +234,87 @@
 .deleteBtn:hover {
   color: var(--danger);
 }
+
+/* ---------- Gantt chart ---------- */
+.gantt {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+  padding: 20px 20px 10px;
+}
+
+.ganttHeader {
+  position: relative;
+  height: 20px;
+  margin-left: 160px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 12px;
+}
+
+.ganttTick {
+  position: absolute;
+  transform: translateX(-50%);
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--text-dim);
+}
+
+.ganttBody {
+  position: relative;
+}
+
+.ganttToday {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--accent);
+  opacity: 0.6;
+}
+
+.ganttRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.ganttRowLabel {
+  width: 148px;
+  flex-shrink: 0;
+  font-size: 13px;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ganttTrack {
+  position: relative;
+  flex: 1;
+  height: 18px;
+  background: var(--panel-raised);
+  border-radius: 4px;
+}
+
+.ganttBar {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, var(--accent), var(--done));
+  border-radius: 4px;
+  min-width: 6px;
+}
+
+.emptyState {
+  border: 1px dashed var(--line);
+  border-radius: 8px;
+  padding: 40px 20px;
+  text-align: center;
+  color: var(--text-dim);
+}
+
+.emptyStateSub {
+  font-size: 13px;
+  margin-top: 6px;
+}
