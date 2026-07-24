@@ -318,3 +318,69 @@
   font-size: 13px;
   margin-top: 6px;
 }
+
+/* ---------- Shell: header, tabs, list, main ---------- */
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 32px 20px 0;
+}
+
+.appTitle {
+  font-family: var(--mono);
+  font-size: 22px;
+  letter-spacing: 0.02em;
+  margin: 0;
+}
+
+.appSubtitle {
+  font-size: 13px;
+  color: var(--text-dim);
+  margin: 6px 0 0;
+}
+
+.headerActions {
+  display: flex;
+  gap: 10px;
+}
+
+.tabs {
+  display: flex;
+  gap: 4px;
+  max-width: 720px;
+  margin: 24px auto 0;
+  padding: 0 20px;
+  border-bottom: 1px solid var(--line);
+}
+
+.tab {
+  background: transparent;
+  border: none;
+  color: var(--text-dim);
+  font-size: 13.5px;
+  font-family: var(--mono);
+  padding: 10px 14px;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+}
+
+.tab[data-active="true"] {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+.main {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
