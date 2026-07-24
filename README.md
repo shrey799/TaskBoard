@@ -1,16 +1,37 @@
-# React + Vite
+# Task Board
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A React to-do list built for the YURS Software entrance task.
 
-Currently, two official plugins are available:
+## Features
+- **To-Do / Completed tabs** — separate views for open and finished tasks
+- **Add Task** — title, description/notes, due date, and start/end date
+- **Complete / Delete** — one-click toggle and removal
+- **Gantt chart (unique feature)** — visual timeline of all incomplete tasks
+  that have a start and end date, with a marker for today's date
+- **Export JSON** — downloads all current tasks as a `.json` file
+- Tasks persist across refreshes via `localStorage`
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Project structure
+```
+src/
+  components/
+    TaskList/
+      TaskList.jsx        # main component: tabs, header, orchestration
+      AddTaskForm.jsx      # modal form for creating a task
+      TaskItem.jsx         # single task row (expand for details)
+      GanttChart.jsx       # timeline view, the unique feature
+      useTasks.js          # state + localStorage + CRUD logic
+      TaskList.module.css  # all styling for the component tree
+  App.jsx                 # renders <TaskList />
+```
 
-## React Compiler
+## Running locally
+```
+npm install
+npm run dev
+```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the Oxlint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+## Building
+```
+npm run build
+```
