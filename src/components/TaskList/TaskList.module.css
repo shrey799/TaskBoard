@@ -1,0 +1,128 @@
+/* ---------- Design tokens ---------- */
+.container {
+  --bg: #12161c;
+  --panel: #1a2029;
+  --panel-raised: #212938;
+  --line: #2c3644;
+  --text: #e7ecf2;
+  --text-dim: #8b96a5;
+  --accent: #e0a458;      /* amber: active / due tasks */
+  --accent-soft: #4a3a24;
+  --done: #4fb3a9;        /* muted teal: completed tasks */
+  --done-soft: #1d3a37;
+  --danger: #d9694f;
+
+  --mono: 'JetBrains Mono', 'Space Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+}
+
+/* ---------- Form ---------- */
+.label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--text-dim);
+  flex: 1;
+  margin-bottom: 14px;
+}
+
+.input, .textarea {
+  font-family: var(--sans);
+  background: var(--panel-raised);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 9px 10px;
+  color: var(--text);
+  font-size: 14px;
+}
+
+.input:focus, .textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.textarea {
+  resize: vertical;
+}
+
+.row {
+  display: flex;
+  gap: 16px;
+}
+
+.hint {
+  font-size: 12px;
+  color: var(--text-dim);
+  margin: -8px 0 14px;
+}
+
+.error {
+  color: var(--danger);
+  font-size: 13px;
+  margin-bottom: 10px;
+}
+
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(8, 10, 14, 0.65);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+}
+
+.modal {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 24px;
+  width: 420px;
+  max-width: 90vw;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+}
+
+.modalTitle {
+  font-family: var(--mono);
+  font-size: 18px;
+  margin: 0 0 18px;
+  letter-spacing: 0.02em;
+}
+
+.modalActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.primaryBtn {
+  background: var(--accent);
+  color: #1a1408;
+  border: none;
+  border-radius: 6px;
+  padding: 9px 16px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.primaryBtn:hover { filter: brightness(1.08); }
+
+.secondaryBtn {
+  background: transparent;
+  color: var(--text-dim);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 9px 16px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.secondaryBtn:hover { color: var(--text); border-color: var(--text-dim); }
