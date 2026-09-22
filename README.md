@@ -7,7 +7,8 @@ A React to-do list built for the YURS Software entrance task.
 - **Add Task** — title, description/notes, due date, and start/end date
 - **Complete / Delete** — one-click toggle and removal
 - **Gantt chart (unique feature)** — visual timeline of all incomplete tasks
-  that have a start and end date, with a marker for today's date
+  with required start and end dates, and a marker for today's date.
+  Older saved tasks without dates are listed separately in the Gantt view.
 - **Export JSON** — downloads all current tasks as a `.json` file
 - Tasks persist across refreshes via `localStorage`
 

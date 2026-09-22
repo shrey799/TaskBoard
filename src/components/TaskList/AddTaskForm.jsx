@@ -25,7 +25,11 @@ export default function AddTaskForm({ onAdd, onClose }) {
       setError('Give the task a title.');
       return;
     }
-    if (form.startDate && form.endDate && form.startDate > form.endDate) {
+    if (!form.startDate || !form.endDate) {
+      setError('Choose a start date and an end date.');
+      return;
+    }
+    if (form.startDate > form.endDate) {
       setError('End date can\'t be before the start date.');
       return;
     }
@@ -89,6 +93,7 @@ export default function AddTaskForm({ onAdd, onClose }) {
               className={styles.input}
               type="date"
               name="startDate"
+              required
               value={form.startDate}
               onChange={handleChange}
             />
@@ -99,13 +104,15 @@ export default function AddTaskForm({ onAdd, onClose }) {
               className={styles.input}
               type="date"
               name="endDate"
+              required
+              min={form.startDate || undefined}
               value={form.endDate}
               onChange={handleChange}
             />
           </label>
         </div>
         <p className={styles.hint}>
-          Start/End dates plot this task on the Gantt view.
+          Start and end dates are required to show this task on the Gantt view.
         </p>
 
         {error && <p className={styles.error}>{error}</p>}

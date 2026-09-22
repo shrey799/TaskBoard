@@ -303,7 +303,6 @@
   bottom: 0;
   background: linear-gradient(90deg, var(--accent), var(--done));
   border-radius: 4px;
-  min-width: 6px;
 }
 
 .emptyState {

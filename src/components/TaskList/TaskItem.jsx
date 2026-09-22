@@ -11,8 +11,9 @@ function formatDate(iso) {
 
 function isOverdue(task) {
   if (!task.dueDate || task.completed) return false;
-  const today = new Date().toISOString().slice(0, 10);
-  return task.dueDate < today;
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  return new Date(task.dueDate + 'T00:00:00') < today;
 }
 
 export default function TaskItem({ task, onToggle, onDelete }) {

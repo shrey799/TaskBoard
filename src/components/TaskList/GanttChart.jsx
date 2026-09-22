@@ -17,6 +17,15 @@ function formatShort(date) {
 export default function GanttChart({ tasks }) {
   // Only tasks with both a start and end date can be plotted
   const plottable = tasks.filter((t) => !t.completed && t.startDate && t.endDate);
+  const unscheduled = tasks.filter((t) => !t.completed && (!t.startDate || !t.endDate));
+  const unscheduledNotice = unscheduled.length > 0 && (
+    <div>
+      <p>These tasks need both start and end dates before they can be plotted:</p>
+      <ul>
+        {unscheduled.map((task) => <li key={task.id}>{task.title}</li>)}
+      </ul>
+    </div>
+  );
 
   if (plottable.length === 0) {
     return (
@@ -25,6 +34,7 @@ export default function GanttChart({ tasks }) {
         <p className={styles.emptyStateSub}>
           Add start and end dates to a task to see it show up here.
         </p>
+        {unscheduledNotice}
       </div>
     );
   }
@@ -39,7 +49,8 @@ export default function GanttChart({ tasks }) {
   const tickEvery = Math.max(1, Math.ceil(totalDays / 9));
   const ticks = [];
   for (let d = 0; d <= totalDays; d += tickEvery) {
-    const tickDate = new Date(rangeStart.getTime() + d * DAY_MS);
+    const tickDate = new Date(rangeStart);
+    tickDate.setDate(tickDate.getDate() + d);
     ticks.push({ offset: (d / totalDays) * 100, label: formatShort(tickDate) });
   }
 
@@ -50,20 +61,19 @@ export default function GanttChart({ tasks }) {
       ? (daysBetween(rangeStart, today) / totalDays) * 100
       : null;
 
-  // Ticks/today line sit above the *track* column only, which starts 160px
-  // in (the width of the row-label column). Expressing the offset as
-  // calc(160px + (100% - 160px) * fraction) keeps them aligned with the bars
-  // regardless of the container's actual pixel width.
+  // The today line is positioned within the full body, including labels.
+  // Header ticks use percentages directly because the header is already inset.
   const trackPosition = (pct) => `calc(160px + (100% - 160px) * ${pct / 100})`;
 
   return (
     <div className={styles.gantt}>
+      {unscheduledNotice}
       <div className={styles.ganttHeader}>
         {ticks.map((tick, i) => (
           <span
             key={i}
             className={styles.ganttTick}
-            style={{ left: trackPosition(tick.offset) }}
+            style={{ left: `${tick.offset}%` }}
           >
             {tick.label}
           </span>
@@ -81,10 +91,7 @@ export default function GanttChart({ tasks }) {
           const start = toDate(task.startDate);
           const end = toDate(task.endDate);
           const left = (daysBetween(rangeStart, start) / totalDays) * 100;
-          const width = Math.max(
-            ((daysBetween(start, end) + 1) / totalDays) * 100,
-            2
-          );
+          const width = ((daysBetween(start, end) + 1) / totalDays) * 100;
           return (
             <div className={styles.ganttRow} key={task.id}>
               <span className={styles.ganttRowLabel} title={task.title}>
