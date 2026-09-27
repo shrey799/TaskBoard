@@ -1,7 +1,5 @@
 # Task Board
 
-A React to-do list built for the YURS Software entrance task.
-
 ## Features
 - **To-Do / Completed tabs** — separate views for open and finished tasks
 - **Add Task** — title, description/notes, due date, and start/end date
